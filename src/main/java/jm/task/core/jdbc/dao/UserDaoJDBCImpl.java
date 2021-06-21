@@ -75,6 +75,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
                 tUser.setAge(resultSet.getByte("Age"));
                 list.add(tUser);
             }
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -83,7 +84,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        String DELETE_ALL = "DELETE FROM Users";
+        String DELETE_ALL = "TRUNCATE TABLE Users";
         try (Statement st = getConnection().createStatement()){
             st.executeUpdate(DELETE_ALL);
             System.out.println("Все пользователи удалены!");
