@@ -18,9 +18,14 @@ public class Util {
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "root";
 
-	public Util() {
+	public Util() {}
+	private static Util instance;
+	public static Util getInstance() {
+		if (instance == null) {
+			instance = new Util();
+		}
+		return instance;
 	}
-
 	public static Connection getConnection() {
 		Connection connection = null;
 		try {
